@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 220 20% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 20% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 20% 10%;
+
+    --primary: 217 100% 63%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 218 100% 58%;
+
+    --secondary: 220 20% 96%;
+    --secondary-foreground: 220 20% 10%;
+
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 10% 46%;
+
+    --accent: 25 95% 53%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 217 100% 63%;
+
+    --radius: 0.75rem;
+
+    /* CONSTIL custom tokens */
+    --navy: 222 47% 11%;
+    --navy-light: 222 35% 18%;
+    --navy-mid: 222 30% 25%;
+    --surface-light: 220 20% 97%;
+    --surface-glass: 220 20% 98%;
+    --industrial: 220 10% 40%;
+    --industrial-light: 220 10% 60%;
+    --glow-primary: 0 0 40px -8px hsl(217 100% 63% / 0.35);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217 100% 63%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+@layer utilities {
+  .bg-surface-light {
+    background-color: hsl(var(--surface-light));
+  }
+
+  .bg-surface-glass {
+    background-color: hsl(var(--surface-glass));
+  }
+
+  .bg-navy {
+    background-color: hsl(var(--navy));
+  }
+
+  .bg-navy-light {
+    background-color: hsl(var(--navy-light));
+  }
+
+  .text-industrial {
+    color: hsl(var(--industrial));
+  }
+
+  .text-industrial-light {
+    color: hsl(var(--industrial-light));
+  }
+
+  .glow-primary {
+    box-shadow: var(--glow-primary);
+  }
+
+  .section-white {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+
+  .section-light {
+    background-color: hsl(var(--surface-light));
+    color: hsl(var(--foreground));
+  }
+
+  .section-navy {
+    background-color: hsl(var(--navy));
+    color: hsl(0 0% 98%);
+  }
+
+  .card-glass {
+    background: hsl(var(--background) / 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid hsl(var(--border));
+    box-shadow: 0 4px 24px -4px hsl(220 20% 10% / 0.06);
+  }
+
+  .card-glass:hover {
+    box-shadow: 0 8px 32px -4px hsl(217 100% 63% / 0.15);
+    border-color: hsl(var(--primary) / 0.3);
+  }
+
+  .card-futuristic {
+    background: hsl(var(--background));
+    border: 1px solid hsl(var(--border));
+    box-shadow: 0 1px 3px hsl(220 20% 10% / 0.04);
+    transition: all 0.3s ease;
+  }
+
+  .card-futuristic:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px -8px hsl(217 100% 63% / 0.2);
+    border-color: hsl(var(--primary) / 0.4);
+  }
+}
