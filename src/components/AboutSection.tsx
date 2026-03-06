@@ -14,8 +14,8 @@ const AboutSection = () => (
           <span className="text-primary text-sm font-semibold uppercase tracking-wider">About Us</span>
           <h2 className="text-3xl md:text-4xl font-bold mt-3 mb-6 text-foreground">
             Who We Are and Why We Built
-            <br />
-            This
+            <br className="hidden sm:block" />
+            {" "}This
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
             We built Constil to help construction professionals, and small businesses save time and increase profits. Using AI-powered blueprint analysis and cost estimation, you can generate accurate project estimates in minutes. Our construction intelligence platform delivers estimate intelligence.

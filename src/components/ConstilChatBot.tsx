@@ -81,7 +81,7 @@ const ConstilChatBot = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="fixed z-40 flex flex-col border border-border bg-background shadow-2xl overflow-hidden
+            className="fixed z-[60] flex flex-col border border-border bg-background shadow-2xl overflow-hidden
               bottom-0 left-0 right-0 rounded-t-2xl max-h-[85vh]
               sm:bottom-24 sm:left-auto sm:right-6 sm:w-[360px] sm:max-h-[400px] sm:rounded-2xl"
           >
@@ -164,7 +164,7 @@ const ConstilChatBot = () => {
       <motion.button
         type="button"
         onClick={() => setIsOpen((o) => !o)}
-        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-14 h-14 min-w-[56px] min-h-[56px] rounded-2xl bg-primary text-primary-foreground shadow-lg hover:bg-primary-hover flex items-center justify-center transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background touch-manipulation"
+        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 w-14 h-14 min-w-[56px] min-h-[56px] rounded-2xl bg-primary text-primary-foreground shadow-lg hover:bg-primary-hover flex items-center justify-center transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background touch-manipulation"
         aria-label={isOpen ? "Close chat" : "Open Constil chat"}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.98 }}

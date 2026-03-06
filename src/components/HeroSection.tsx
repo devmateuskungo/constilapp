@@ -1,7 +1,22 @@
+import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import heroVideo from "@/assets/hero-video-diverse.mp4";
+import demoVideo from "@/assets/hero-video.mp4";
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 const HeroSection = () => {
+  const [demoOpen, setDemoOpen] = useState(false);
+  const demoVideoRef = useRef<HTMLVideoElement>(null);
+
+  const handleDemoOpenChange = (open: boolean) => {
+    setDemoOpen(open);
+    if (!open) demoVideoRef.current?.pause();
+  };
+
   return (
     <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
       {/* Video background */}
@@ -48,15 +63,32 @@ const HeroSection = () => {
             >
               Get Started
             </a>
-            <a
-              href="#features"
+            <button
+              type="button"
+              onClick={() => setDemoOpen(true)}
               className="px-8 py-3.5 rounded-xl border-2 border-primary-foreground/30 text-primary-foreground font-semibold hover:bg-primary-foreground/10 backdrop-blur-sm transition-all duration-300"
             >
               Watch Demo
-            </a>
+            </button>
           </div>
         </motion.div>
       </div>
+
+      <Dialog open={demoOpen} onOpenChange={handleDemoOpenChange}>
+        <DialogContent
+          className="max-w-[98vw] w-[98vw] max-h-[95vh] h-[95vh] p-0 gap-0 border-0 bg-black overflow-hidden rounded-xl [&>button]:absolute [&>button]:right-3 [&>button]:top-3 [&>button]:z-10 [&>button]:bg-white/10 [&>button]:text-white [&>button]:hover:bg-white/20"
+          onPointerDownOutside={() => demoVideoRef.current?.pause()}
+        >
+          <DialogTitle className="sr-only">Watch Demo Video</DialogTitle>
+          <video
+            ref={demoVideoRef}
+            src={demoVideo}
+            controls
+            className="w-full h-full object-contain rounded-xl"
+            playsInline
+          />
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };
