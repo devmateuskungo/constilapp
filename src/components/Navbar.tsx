@@ -75,15 +75,15 @@ const Navbar = () => {
             </DropdownMenuTrigger>
             <DropdownMenuContent
               align="start"
-              className="w-56 bg-background text-foreground border border-border rounded-xl py-2 shadow-dropdown"
+              className="min-w-[280px] w-max max-w-[min(90vw,320px)] bg-background text-foreground border border-border rounded-xl py-2 px-1 shadow-dropdown"
             >
               {solutionsLinks.map((l) => (
                 <DropdownMenuItem
                   key={l.to}
                   asChild
-                  className="cursor-pointer focus:bg-primary/10 focus:text-primary"
+                  className="cursor-pointer focus:bg-primary/10 focus:text-primary rounded-lg px-3 py-2.5"
                 >
-                  <Link to={l.to} className="w-full flex items-center gap-2">
+                  <Link to={l.to} className="w-full flex items-center gap-2 text-sm whitespace-nowrap">
                     {l.label}
                   </Link>
                 </DropdownMenuItem>
