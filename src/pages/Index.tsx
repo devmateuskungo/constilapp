@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import FeaturesCards from "@/components/FeaturesCards";
@@ -13,7 +15,20 @@ import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer";
 import ConstilChatBot from "@/components/ConstilChatBot";
 
-const Index = () => (
+const Index = () => {
+  const { hash } = useLocation();
+
+  useEffect(() => {
+    if (!hash) return;
+    const id = hash.slice(1);
+    const el = document.getElementById(id);
+    if (el) {
+      const timer = setTimeout(() => el.scrollIntoView({ behavior: "smooth", block: "start" }), 50);
+      return () => clearTimeout(timer);
+    }
+  }, [hash]);
+
+  return (
   <main className="bg-background min-h-screen scroll-smooth">
     <Navbar />
     <ConstilChatBot />
@@ -30,6 +45,7 @@ const Index = () => (
     <FAQSection />
     <Footer />
   </main>
-);
+  );
+};
 
 export default Index;

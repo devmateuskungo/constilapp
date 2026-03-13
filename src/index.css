@@ -42,10 +42,14 @@
     --navy-light: 222 35% 18%;
     --navy-mid: 222 30% 25%;
     --surface-light: 220 20% 97%;
+    --surface-dark: 220 14% 93%;
     --surface-glass: 220 20% 98%;
     --industrial: 220 10% 40%;
     --industrial-light: 220 10% 60%;
     --glow-primary: 0 0 40px -8px hsl(217 100% 63% / 0.35);
+    --shadow-card: 0 1px 3px hsl(220 20% 10% / 0.04);
+    --shadow-card-hover: 0 12px 40px -8px hsl(217 100% 63% / 0.12);
+    --shadow-dropdown: 0 10px 40px -10px hsl(220 20% 10% / 0.12);
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -66,10 +70,23 @@
   body {
     @apply bg-background text-foreground font-sans antialiased;
     font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Inter', sans-serif;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+  }
+
+  p {
+    line-height: 1.65;
+  }
+
+  a:focus-visible,
+  button:focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
   }
 }
 
@@ -112,33 +129,44 @@
     color: hsl(var(--foreground));
   }
 
+  .section-dark {
+    background-color: hsl(var(--surface-dark));
+    color: hsl(var(--foreground));
+  }
+
   .section-navy {
     background-color: hsl(var(--navy));
     color: hsl(0 0% 98%);
   }
 
   .card-glass {
-    background: hsl(var(--background) / 0.8);
+    background: hsl(var(--background) / 0.85);
     backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border: 1px solid hsl(var(--border));
-    box-shadow: 0 4px 24px -4px hsl(220 20% 10% / 0.06);
+    box-shadow: var(--shadow-card);
+    transition: box-shadow 0.25s ease, border-color 0.25s ease;
   }
 
   .card-glass:hover {
-    box-shadow: 0 8px 32px -4px hsl(217 100% 63% / 0.15);
-    border-color: hsl(var(--primary) / 0.3);
+    box-shadow: var(--shadow-card-hover);
+    border-color: hsl(var(--primary) / 0.25);
   }
 
   .card-futuristic {
     background: hsl(var(--background));
     border: 1px solid hsl(var(--border));
-    box-shadow: 0 1px 3px hsl(220 20% 10% / 0.04);
-    transition: all 0.3s ease;
+    box-shadow: var(--shadow-card);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
   }
 
   .card-futuristic:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 40px -8px hsl(217 100% 63% / 0.2);
-    border-color: hsl(var(--primary) / 0.4);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-card-hover);
+    border-color: hsl(var(--primary) / 0.35);
+  }
+
+  .shadow-dropdown {
+    box-shadow: var(--shadow-dropdown);
   }
 }

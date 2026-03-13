@@ -7,6 +7,9 @@ import Index from "./pages/Index";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import NotFound from "./pages/NotFound";
+import ClientManagementPage from "./pages/ClientManagementPage";
+import ConstructionEstimatingPage from "./pages/ConstructionEstimatingPage";
+import SmartConstructionPage from "./pages/SmartConstructionPage";
 
 const queryClient = new QueryClient();
 
@@ -18,6 +21,9 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/smart-construction" element={<SmartConstructionPage />} />
+          <Route path="/client-management" element={<ClientManagementPage />} />
+          <Route path="/construction-estimating" element={<ConstructionEstimatingPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="*" element={<NotFound />} />

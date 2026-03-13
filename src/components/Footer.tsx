@@ -14,44 +14,47 @@ const TikTokIcon = ({ className }: { className?: string }) => (
 );
 
 const Footer = () => (
-  <footer className="bg-navy py-12">
-    <div className="container mx-auto px-4">
-      <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+  <footer className="bg-navy py-14 md:py-16">
+    <div className="container mx-auto px-4 max-w-7xl">
+      <div className="flex flex-col md:flex-row md:items-start justify-between gap-10 md:gap-12">
         <div className="text-center md:text-left">
           <div className="text-2xl font-bold tracking-tight text-primary-foreground mb-2">
             CONST<span className="text-primary">IL</span>
           </div>
-          <p className="text-primary-foreground/50 text-sm">
+          <p className="text-primary-foreground/60 text-sm leading-relaxed max-w-xs">
             AI-Powered Construction Estimation & Invoicing
           </p>
         </div>
 
-        <div className="flex flex-col items-center md:items-end gap-3 text-center md:text-right">
-          <a href="mailto:support@constil.com" className="text-primary-foreground/50 hover:text-primary transition-colors text-sm">
-            support@constil.com
-          </a>
-          <div className="flex gap-3">
-            {socialLinks.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-xl bg-primary-foreground/5 border border-primary-foreground/10 flex items-center justify-center text-primary-foreground/50 hover:text-primary hover:border-primary/40 transition-all duration-300"
-                aria-label={item.label}
-              >
-                {item.isTikTok ? (
-                  <TikTokIcon className="w-5 h-5" />
-                ) : (
-                  <item.icon className="w-5 h-5" />
-                )}
-              </a>
-            ))}
-          </div>
+        <div className="flex flex-col items-center md:items-end gap-3">
+            <a
+              href="mailto:support@constil.com"
+              className="text-sm text-primary-foreground/60 hover:text-primary transition-colors duration-200"
+            >
+              support@constil.com
+            </a>
+            <div className="flex gap-2">
+              {socialLinks.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-9 h-9 rounded-lg bg-primary-foreground/10 border border-primary-foreground/10 flex items-center justify-center text-primary-foreground/60 hover:text-primary hover:border-primary/30 hover:bg-primary/10 transition-all duration-200"
+                  aria-label={item.label}
+                >
+                  {item.isTikTok ? (
+                    <TikTokIcon className="w-4 h-4" />
+                  ) : (
+                    <item.icon className="w-4 h-4" />
+                  )}
+                </a>
+              ))}
+            </div>
         </div>
       </div>
 
-      <div className="mt-8 pt-8 border-t border-primary-foreground/10 text-center text-xs text-primary-foreground/40">
+      <div className="mt-10 pt-8 border-t border-primary-foreground/10 text-center text-xs text-primary-foreground/50">
         © {new Date().getFullYear()} CONSTIL. All rights reserved.
       </div>
     </div>

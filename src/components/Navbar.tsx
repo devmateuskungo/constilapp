@@ -1,14 +1,26 @@
 import { useState, useEffect } from "react";
-import { Menu, X, LogIn, UserPlus } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Menu, X, LogIn, UserPlus, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
-const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Features", href: "#features" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "Contact", href: "#contact" },
-  { label: "FAQ", href: "#faq" },
+const solutionsLinks = [
+  { label: "Smart Construction (AI Estimating)", to: "/smart-construction" },
+  { label: "Client Management", to: "/client-management" },
+  { label: "Construction Estimating", to: "/construction-estimating" },
+];
+
+const mainLinks = [
+  { label: "About", to: "/#about" },
+  { label: "Features", to: "/#features" },
+  { label: "Pricing", to: "/#pricing" },
+  { label: "Contact", to: "/#contact" },
+  { label: "FAQ", to: "/#faq" },
 ];
 
 const Navbar = () => {
@@ -22,25 +34,73 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      scrolled ? "bg-background/95 backdrop-blur-md shadow-sm border-b border-border" : "bg-transparent"
-    }`}>
-      <div className="container mx-auto flex items-center justify-between h-16 px-4">
-        <a href="#home" className={`text-2xl font-bold tracking-tight transition-colors ${scrolled ? "text-foreground" : "text-primary-foreground"}`}>
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-background/95 backdrop-blur-md shadow-sm border-b border-border"
+          : "bg-transparent"
+      }`}
+    >
+      <div className="container mx-auto flex items-center justify-between h-16 px-4 max-w-7xl">
+        <Link
+          to="/"
+          className={`text-xl md:text-2xl font-bold tracking-tight transition-colors duration-200 ${
+            scrolled ? "text-foreground hover:text-primary" : "text-primary-foreground"
+          }`}
+        >
           CONST<span className="text-primary">IL</span>
-        </a>
+        </Link>
 
         <div className="hidden lg:flex items-center gap-6">
-          {navLinks.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className={`text-sm font-medium hover:text-primary transition-colors duration-200 ${
-                scrolled ? "text-muted-foreground" : "text-primary-foreground/80"
+          <Link
+            to="/"
+            className={`text-sm font-medium px-3 py-1.5 rounded-full transition-colors duration-200 ${
+              scrolled ? "text-foreground hover:bg-primary/10 hover:text-primary" : "text-primary-foreground/90 hover:bg-primary/10 hover:text-primary"
+            }`}
+          >
+            Home
+          </Link>
+
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <button
+                className={`inline-flex items-center gap-1 text-sm font-medium px-3 py-1.5 rounded-full transition-colors duration-200 ${
+                  scrolled ? "text-foreground hover:bg-primary/10 hover:text-primary" : "text-primary-foreground/90 hover:bg-primary/10 hover:text-primary"
+                }`}
+                aria-label="Open solutions menu"
+              >
+                Solutions
+                <ChevronDown className="w-4 h-4 opacity-80" />
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent
+              align="start"
+              className="w-56 bg-background text-foreground border border-border rounded-xl py-2 shadow-dropdown"
+            >
+              {solutionsLinks.map((l) => (
+                <DropdownMenuItem
+                  key={l.to}
+                  asChild
+                  className="cursor-pointer focus:bg-primary/10 focus:text-primary"
+                >
+                  <Link to={l.to} className="w-full flex items-center gap-2">
+                    {l.label}
+                  </Link>
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          {mainLinks.map((l) => (
+            <Link
+              key={l.to}
+              to={l.to}
+              className={`text-sm font-medium px-3 py-1.5 rounded-full transition-colors duration-200 ${
+                scrolled ? "text-foreground hover:bg-primary/10 hover:text-primary" : "text-primary-foreground/90 hover:bg-primary/10 hover:text-primary"
               }`}
             >
               {l.label}
-            </a>
+            </Link>
           ))}
         </div>
 
@@ -83,16 +143,43 @@ const Navbar = () => {
             className="lg:hidden bg-background border-t border-border overflow-hidden"
           >
             <div className="flex flex-col gap-4 p-6">
-              {navLinks.map((l) => (
-                <a
-                  key={l.href}
-                  href={l.href}
+              <Link
+                to="/"
+                onClick={() => setOpen(false)}
+                className="text-sm font-medium text-foreground px-3 py-2 rounded-lg hover:bg-primary/10 hover:text-primary transition-colors"
+              >
+                Home
+              </Link>
+
+              {mainLinks.map((l) => (
+                <Link
+                  key={l.to}
+                  to={l.to}
                   onClick={() => setOpen(false)}
-                  className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+                  className="text-sm font-medium text-foreground px-3 py-2 rounded-lg hover:bg-primary/10 hover:text-primary transition-colors"
                 >
                   {l.label}
-                </a>
+                </Link>
               ))}
+
+              <div className="pt-2">
+                <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground mb-2">
+                  Solutions
+                </p>
+                <div className="flex flex-col gap-2">
+                  {solutionsLinks.map((l) => (
+                    <Link
+                      key={l.to}
+                      to={l.to}
+                      onClick={() => setOpen(false)}
+                      className="text-sm font-medium text-foreground px-3 py-2 rounded-lg hover:bg-primary/10 hover:text-primary transition-colors"
+                    >
+                      {l.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
               <div className="flex flex-col gap-3 pt-4 border-t border-border">
                 <a
                   href="https://app.constil.com/"
